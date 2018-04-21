@@ -9,5 +9,14 @@
 	"author": "Gauthier de Girodon Pralong <dgpgdev@gmail.com>",
 	"devDependencies": {
 		"shelljs": "^0.8.1"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dgpgdev/vue-cli-plugin-vuepress.git"
+	},
+	"keywords": [ "vupress", "vue", "generator", "plugin" ],
+	"bugs": {
+		"url": "https://github.com/dgpgdev/vue-cli-plugin-vuepress/issues"
+	},
+	"homepage": "https://github.com/dgpgdev/vue-cli-plugin-vuepress#readme"
 }

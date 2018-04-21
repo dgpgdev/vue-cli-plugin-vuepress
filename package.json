@@ -1,15 +1,13 @@
 {
 	"name": "vue-cli-plugin-vuepress",
-	"version": "0.0.12",
+	"version": "0.0.14",
 	"main": "index.js",
 	"license": "MIT",
 	"dependencies": {
-		"vuepress": "^0.7.0"
-	},
-	"author": "Gauthier de Girodon Pralong <dgpgdev@gmail.com>",
-	"devDependencies": {
+		"vuepress": "^0.7.0",
 		"shelljs": "^0.8.1"
 	},
+	"author": "Gauthier de Girodon Pralong <dgpgdev@gmail.com>",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/dgpgdev/vue-cli-plugin-vuepress.git"

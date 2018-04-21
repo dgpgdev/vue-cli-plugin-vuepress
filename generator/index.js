@@ -21,11 +21,16 @@ module.exports = (api, options, rootOptions) => {
   api.onCreateComplete(() => {
     const path = require('path') 
     const shell = require('shelljs')
+    const fs = require('fs')
     //create .vuepress folder
     shell.mkdir('-p', path.resolve(options.rootDoc+'/.vuepress'))
     //conpy files inside .vuepress
     shell.cp(path.resolve(__dirname+'/templates/README.md'), path.resolve(options.rootDoc+'/README.md'))
-    shell.echo(conf).to(options.rootDoc+'/.vuepress/config.js')
+
+    fs.writeFile(path.resolve(options.rootDoc+'/.vuepress/config.js'),conf, error=> {
+      if(error) throw error
+    })
+    //shell.echo(conf).to(options.rootDoc+'/.vuepress/config.js')
     
   })
 

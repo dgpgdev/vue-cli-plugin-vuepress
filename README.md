@@ -7,4 +7,4 @@ vue cli 3 plugin to include vuepress inside your vuejs project (documentation).
 vue add vuepress
 ```
 
-[vuepress référence](https://vuepress.vuejs.org)
+[vuepress website](https://vuepress.vuejs.org)

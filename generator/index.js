@@ -1,5 +1,6 @@
 
 module.exports = (api, options, rootOptions) => {
+   const fs = require('fs')
   // modify package.json fields
   api.extendPackage({
     scripts: {
@@ -10,10 +11,12 @@ module.exports = (api, options, rootOptions) => {
       vuepress: '^0.7.0'
     }
   })
+  //package.json content 
+  const package = JSON.parse(fs.readFileSync(api.resolve('package.json'), { encoding: 'utf8' }))
   //get initial config
   let conf = require('./templates/config.js')
   //add prompts values to config
-  conf.title = options.title
+  conf.title = options.title || package.name
   conf.dest = options.output
   //convert file to string
   conf = `module.exports = ${JSON.stringify(conf, null, 2)}`
@@ -21,7 +24,6 @@ module.exports = (api, options, rootOptions) => {
   api.onCreateComplete(() => {
     const path = require('path') 
     const shell = require('shelljs')
-    const fs = require('fs')
     //create .vuepress folder
     shell.mkdir('-p', path.resolve(options.rootDoc+'/.vuepress'))
     //conpy files inside .vuepress

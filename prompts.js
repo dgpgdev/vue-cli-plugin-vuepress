@@ -8,8 +8,7 @@ module.exports = [
   {
     type: 'input',
     name: 'title',
-    message: 'Title for the site',
-    default: 'Documentation'
+    message: 'Title for the site (default project name)',
   },
   {
     type: 'input',

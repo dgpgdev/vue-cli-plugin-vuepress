@@ -24,5 +24,19 @@ module.exports = [
     message: 'Output directory',
     default: 'vuepress',
     when: answers => answers.enabledConfig
+  },
+  {
+    type: 'confirm',
+    name: 'externalComponent',
+    message: 'add external vue components',
+    default: false,
+    when: answers => answers.enabledConfig
+  },
+  {
+    type: 'input',
+    name: 'folderComponent',
+    message: 'components folder',
+    default: 'src/components',
+    when: answers => answers.externalComponent
   }
 ]

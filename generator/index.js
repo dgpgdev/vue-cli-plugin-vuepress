@@ -1,6 +1,6 @@
 
 module.exports = (api, options, rootOptions) => {
-  const fs = require('fs')
+  const {copyFile, createDir, createFile, readPackage, makeEnhance} = require('./file')
   const util = require('util')
   const rootDoc = options.rootDoc || 'docs'
    
@@ -14,8 +14,16 @@ module.exports = (api, options, rootOptions) => {
       vuepress: '^0.7.0'
     }
   })
+
+  if(options.externalComponent){
+    api.extendPackage({
+      devDependencies: {
+        loadash: "^1.0.0"
+      }
+    })
+  }
   //package.json content 
-  const package = JSON.parse(fs.readFileSync(api.resolve('package.json'), { encoding: 'utf8' }))
+  const package = readPackage(api.resolve('package.json'))
   //get initial config
   let conf = require('./templates/config.js')
   //add prompts values to config
@@ -27,19 +35,17 @@ module.exports = (api, options, rootOptions) => {
   }`
 
   api.onCreateComplete(() => {
-    const path = require('path') 
-    const shell = require('shelljs')
     //create .vuepress folder
-    shell.mkdir('-p', path.resolve(rootDoc+'/.vuepress'))
+    createDir(rootDoc+'/.vuepress')
     //conpy files inside .vuepress
     const cpFiles = ['README.md', 'page1.md', 'page2.md', 'page3.md']
     for(const f of cpFiles){
-      shell.cp(path.resolve(__dirname+'/templates/'+f), path.resolve(rootDoc+'/'+f))
+      copyFile(__dirname+'/templates/'+f, rootDoc+'/'+f)
     }
     //write config js file
-    fs.writeFile(path.resolve(rootDoc+'/.vuepress/config.js'),conf, error=> {
-      if(error) throw error
-    })    
+    createFile(rootDoc+'/.vuepress/config.js' , conf)
+    if(options.externalComponent){
+      createFile(rootDoc+'/.vuepress/enhanceApp.js', makeEnhance(rootDoc+'/.vuepress', options.folderComponent))
+    }
   })
-
 }

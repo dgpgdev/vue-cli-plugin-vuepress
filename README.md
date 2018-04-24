@@ -19,6 +19,27 @@ yarn docs:dev
 yarn docs:build
 ```
 
+## Add external components
+by default you could add component in .vuepress/components folder to use inside markdown page. Often you need to expose components from your vue project (generally locate at src/components).
+Now you can assign directly your components to vuepress with prompts command.
+
+
+``` sh
+# when you see 
+add external vue components ? y
+
+# choose your component folder (default src/components)
+components folder src/myfoldercomponent
+```
+Congrats! your components are enabled inside vuepress
+
+you can do 
+```markdown
+# page
+
+<myprojectcomponent />
+```
+
 See more configuration options [config vuepress](https://vuepress.vuejs.org/config/)
 
 

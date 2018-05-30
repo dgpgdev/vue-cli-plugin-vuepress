@@ -43,7 +43,7 @@ module.exports = [{
   {
     type: 'input',
     name: 'repo_name',
-    message: 'insert repo name (default project name)',
+    message: 'Insert repo name (default project name)',
     when: answers => answers.deploy && answers.repotype_uri === 'https://<USERNAME>.<GIT PLATEFORM>.io/<REPO>/'
   },
 
@@ -58,14 +58,14 @@ module.exports = [{
   {
     type: 'confirm',
     name: 'externalComponent',
-    message: 'add external vue components',
+    message: 'Register vue project components',
     default: false,
     when: answers => answers.enabledConfig
   },
   {
     type: 'input',
     name: 'folderComponent',
-    message: 'components folder',
+    message: 'Components folder',
     default: 'src/components',
     when: answers => answers.externalComponent
   }

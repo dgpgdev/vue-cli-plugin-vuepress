@@ -16,7 +16,7 @@ module.exports = (api, options, rootOptions) => {
       'docs:build': `vuepress build ${rootDoc}`
     },
     devDependencies: {
-      vuepress: '^0.7.0'
+      vuepress: '^0.10.0'
     }
   })
 

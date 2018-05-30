@@ -1,5 +1,5 @@
 ---
 home: true
-actionText: Commencer →
+actionText: start →
 actionLink: /guide/
 ---

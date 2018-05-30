@@ -1,7 +1,5 @@
 # Installation
 
-
-
 ## Install from vue cli
 ``` sh
 vue add vuepress

@@ -1,5 +1,4 @@
-module.exports = [
-  {
+module.exports = [{
     type: 'confirm',
     name: 'enabledConfig',
     message: '📖 custom configuration file ?',
@@ -19,12 +18,43 @@ module.exports = [
     when: answers => answers.enabledConfig
   },
   {
+    type: 'confirm',
+    name: 'deploy',
+    message: 'Docs will be deploy to GitHub or GitLab ?',
+    default: false,
+    when: answers => answers.enabledConfig
+  },
+  {
+    type: 'list',
+    name: 'repotype',
+    message: 'Choose your repo type',
+    choices: ['github', 'gitlab'],
+    default: 'github',
+    when: answers => answers.deploy
+  },
+  {
+    type: 'list',
+    name: 'repotype_uri',
+    message: 'Select url type to deploy your project',
+    choices: ['https://<USERNAME>.<GIT PLATEFORM>.io/', 'https://<USERNAME>.<GIT PLATEFORM>.io/<REPO>/'],
+    default: 1,
+    when: answers => answers.deploy
+  },
+  {
+    type: 'input',
+    name: 'repo_name',
+    message: 'insert repo name (default project name)',
+    when: answers => answers.deploy && answers.repotype_uri === 'https://<USERNAME>.<GIT PLATEFORM>.io/<REPO>/'
+  },
+
+  {
     type: 'input',
     name: 'output',
     message: 'Output directory',
     default: 'vuepress',
-    when: answers => answers.enabledConfig
+    when: answers => answers.enabledConfig && !answers.deploy
   },
+
   {
     type: 'confirm',
     name: 'externalComponent',

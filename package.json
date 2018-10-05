@@ -1,6 +1,6 @@
 {
 	"name": "vue-cli-plugin-vuepress",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
@@ -16,12 +16,7 @@
 		"type": "git",
 		"url": "git+https://github.com/dgpgdev/vue-cli-plugin-vuepress.git"
 	},
-	"keywords": [
-		"vuepress",
-		"vue",
-		"generator",
-		"plugin"
-	],
+	"keywords": [ "vuepress", "vue", "generator", "plugin" ],
 	"bugs": {
 		"url": "https://github.com/dgpgdev/vue-cli-plugin-vuepress/issues"
 	},

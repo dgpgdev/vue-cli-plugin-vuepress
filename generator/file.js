@@ -1,30 +1,46 @@
 const fs = require('fs')
-const path = require('path') 
+const path = require('path')
 const shell = require('shelljs')
 
-exports.readPackage = function(file){
-  return JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }))
+exports.readPackage = function(file) {
+	return JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }))
 }
 
-exports.createFile = function(file, data){
-  fs.writeFile(path.resolve(file), data, error=> {
-    if(error) throw error
-  })    
+exports.createFile = function(file, data) {
+	fs.writeFile(path.resolve(file), data, (error) => {
+		if (error) throw error
+	})
 }
 
-exports.createDir = function(dir){
-  shell.mkdir('-p', path.resolve(dir))
+exports.createDir = function(dir) {
+	shell.mkdir('-p', path.resolve(dir))
 }
 
-exports.copyFile = function(from, to){
-  shell.cp(path.resolve(from), path.resolve(to))
+exports.copyFile = function(from, to) {
+	shell.cp(path.resolve(from), path.resolve(to))
 }
 
-exports.makeEnhance = function(vuepressFolder, componentFolder){
-  const componentDir = path.relative(vuepressFolder, componentFolder)
-  const regDir = new RegExp('.*\\/')
-  const regExt = new RegExp('\\.\\w+$')
-  return `import upperFirst from 'lodash/upperFirst'
+exports.makeFirebaseRC = function(fbID) {
+	return `{
+  "projects": {
+    "default": "${fbID}"
+  }
+}`
+}
+exports.makeFirebaseJson = function(folder) {
+	return `{
+    "hosting": {
+      "public": "${folder}",
+      "ignore": []
+    }
+  }`
+}
+
+exports.makeEnhance = function(vuepressFolder, componentFolder) {
+	const componentDir = path.relative(vuepressFolder, componentFolder)
+	const regDir = new RegExp('.*\\/')
+	const regExt = new RegExp('\\.\\w+$')
+	return `import upperFirst from 'lodash/upperFirst'
   import camelCase from 'lodash/camelCase'
   export default ({
     Vue, // the version of Vue being used in the VuePress app
@@ -63,4 +79,3 @@ exports.makeEnhance = function(vuepressFolder, componentFolder){
     })
   }`
 }
-  
